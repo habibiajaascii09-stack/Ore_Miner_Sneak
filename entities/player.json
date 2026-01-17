@@ -1,0 +1,33 @@
+{
+  "format_version": "1.18.20",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "minecraft:player"
+    },
+    "components": {
+      "minecraft:environment_sensor": {
+        "triggers": {
+          "filters": {
+            "all_of": [
+              { "test": "is_sneaking", "value": true },
+              { "test": "has_component", "value": "minecraft:is_mining" }
+            ]
+          },
+          "event": "event:vein_mine_mode"
+        }
+      }
+    },
+    "events": {
+      "event:vein_mine_mode": {
+        "run_command": {
+          "command": [
+            "fill ~-1 ~-1 ~-1 ~1 ~1 ~1 air 0 destroy diamond_ore",
+            "fill ~-1 ~-1 ~-1 ~1 ~1 ~1 air 0 destroy iron_ore",
+            "fill ~-1 ~-1 ~-1 ~1 ~1 ~1 air 0 destroy gold_ore",
+            "fill ~-1 ~-1 ~-1 ~1 ~1 ~1 air 0 destroy coal_ore"
+          ]
+        }
+      }
+    }
+  }
+}
